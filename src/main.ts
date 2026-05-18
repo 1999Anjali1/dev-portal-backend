@@ -6,7 +6,7 @@ async function bootstrap() {
   
   // 🆕 Allow Angular (port 4200) to call this API
   (await app).enableCors({
-    origin: 'http://localhost:62337',
+    origin: 'http://localhost:4200',
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
   });
   

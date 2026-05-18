@@ -1,11 +1,14 @@
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Param, Body, UseGuards } from '@nestjs/common';
 import { DevelopersService } from './developers.service';
 import { Developer } from './developer.entity';
+import { JwtGuard } from '../auth/jwt.guard';
 
 @Controller('developers')
 export class DevelopersController {
   constructor(private readonly developersService: DevelopersService) {}
 
+  // 🆕 Protected — needs JWT token!
+  @UseGuards(JwtGuard)
   @Get()
   findAll(): Promise<Developer[]> {
     return this.developersService.findAll();

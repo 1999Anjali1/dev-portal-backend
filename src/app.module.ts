@@ -23,9 +23,9 @@ TypeOrmModule.forRootAsync({
     url: configService.get('DATABASE_URL'),
     entities: [Developer, User],
     synchronize: true,
-    ssl: {
-      rejectUnauthorized: false
-    }
+    ssl: configService.get('DATABASE_URL')?.includes('neon.tech') 
+      ? { rejectUnauthorized: false }
+      : false
   }),
   inject: [ConfigService]
 }),
